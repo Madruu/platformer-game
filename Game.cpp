@@ -1,0 +1,57 @@
+#include <raylib.h>
+#include "Game.hpp"
+#include <vector>
+Game::Game()
+{
+        Init();       
+}
+
+Game::~Game()
+{
+        isRunning = false;
+}
+
+void Game::Init()
+{
+        isRunning = true;
+        SpawnCoin({ 300.0f, 200.0f });
+}
+
+void Game::Update()
+{
+        if(isRunning)
+        {
+                player.Update();
+                player.MoveXAxis();
+                player.MoveYAxis();
+                enemy.Update();
+                for(auto& coin : coins) {
+                        coin.Update();
+                }
+        }
+}
+
+void Game::Draw()
+{
+        if(isRunning)
+        {
+                tm.Draw();
+                player.Draw();
+                enemy.Draw();
+                for(auto& coin : coins) {
+                        coin.Draw();
+                }
+        }
+}
+
+void Game::SpawnCoin(Vector2 coinPos)
+{
+        coins.push_back(Coin(coinPos));
+}
+
+
+void Game::CheckCollision()
+{
+        bool collided = true;
+
+}

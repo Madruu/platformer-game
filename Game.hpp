@@ -23,5 +23,5 @@ class Game {
                 bool collided = false;
                 Rectangle boxCollision;
                 //std::vector<TileMap> tiles;
-                void CheckCollision();
+                bool CheckCollisionWithTiles();
 };

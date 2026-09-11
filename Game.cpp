@@ -17,13 +17,23 @@ void Game::Init()
         SpawnCoin({ 300.0f, 200.0f });
 }
 
-void Game::Update()
-{
+void Game::Update() {
         if(isRunning)
         {
                 player.Update();
                 player.MoveXAxis();
+                
+                if(CheckCollisionWithTiles())
+                {
+                        player.RestoreX();
+                }
+
                 player.MoveYAxis();
+
+                if(CheckCollisionWithTiles())
+                {
+                        player.RestoreY();
+                }
                 enemy.Update();
                 for(auto& coin : coins) {
                         coin.Update();
@@ -50,7 +60,7 @@ void Game::SpawnCoin(Vector2 coinPos)
 }
 
 
-void Game::CheckCollision()
+bool Game::CheckCollisionWithTiles()
 {
         Rectangle playerRect = player.GetRect();
         std::vector<Rectangle> tileRects = tm.GetRect();
@@ -60,7 +70,9 @@ void Game::CheckCollision()
                 if(collided)
                 {
                         boxCollision = GetCollisionRec(playerRect, tile);
-                        break;
+                        return true;
+                        //break;
                 }
         }
+        return false;
 }

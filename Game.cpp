@@ -52,6 +52,14 @@ void Game::SpawnCoin(Vector2 coinPos)
 
 void Game::CheckCollision()
 {
-        bool collided = true;
-
+        Rectangle playerRect = player.GetRect();
+        std::vector<Rectangle> tileRects = tm.GetRect();
+        boxCollision = { 0 };
+        for(auto& tile : tileRects) {
+                collided = CheckCollisionRecs(playerRect, tile);
+                if(collided)
+                {
+                        boxCollision = GetCollisionRec(playerRect, tile);
+                }
+        }
 }

@@ -20,5 +20,8 @@ class Game {
                 Player player;
                 Enemy enemy;
                 TileMap tm;
+                bool collided = false;
+                Rectangle boxCollision;
+                //std::vector<TileMap> tiles;
                 void CheckCollision();
 };

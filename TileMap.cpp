@@ -1,5 +1,7 @@
 #include <raylib.h>
+#include <vector>
 #include "TileMap.hpp"
+#define TILE_SIZE 32
 
 int tileMap[20][20] = {
     {2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2},
@@ -35,3 +37,23 @@ void TileMap::Draw()
      txm.RenderTextures(tileMap);   
 }
 
+
+std::vector<Rectangle> TileMap::GetRect()
+{
+        std::vector<Rectangle> rects;
+        for(int y = 0; y < 20; y++){
+                for(int x = 0; x < 20; x++){
+                        if(tileMap[y][x] == 0 || tileMap[y][x] == 1 || tileMap[y][x] == 4 || tileMap[y][x] == 5)
+                        {
+                                Rectangle tileRect = { static_cast<float>(x * TILE_SIZE), 
+                                        static_cast<float>(y * TILE_SIZE), 
+                                        static_cast<float>(TILE_SIZE), 
+                                        static_cast<float>(TILE_SIZE) 
+                                };
+
+                                rects.push_back(tileRect);
+                        }
+                }
+        }
+        return rects;
+}

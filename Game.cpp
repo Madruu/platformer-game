@@ -60,6 +60,7 @@ void Game::CheckCollision()
                 if(collided)
                 {
                         boxCollision = GetCollisionRec(playerRect, tile);
+                        break;
                 }
         }
 }

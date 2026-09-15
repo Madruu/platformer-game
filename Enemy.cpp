@@ -20,7 +20,7 @@ void Enemy::Draw()
 void Enemy::Update()
 {
         float dt = GetFrameTime();
-
+        //starts at true
         if(isGoingRight)
         {
                 position.x += 1.0f * speed * dt;
@@ -36,4 +36,6 @@ void Enemy::Update()
                 }
         }
 }
+
+
 

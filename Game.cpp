@@ -33,6 +33,7 @@ void Game::Update() {
                 if(CheckCollisionWithTiles())
                 {
                         player.RestoreY();
+                        player.isJumping = false;
                 }
                 enemy.Update();
                 for(auto& coin : coins) {
@@ -71,7 +72,6 @@ bool Game::CheckCollisionWithTiles()
                 {
                         boxCollision = GetCollisionRec(playerRect, tile);
                         return true;
-                        //break;
                 }
         }
         return false;

@@ -17,13 +17,15 @@ class Player {
                 void RestoreY();
                 void MoveXAxis();
                 void MoveYAxis();
-
+                bool isJumping;
         private:
                 Texture2D spr_player;
                 Vector2 position;
                 int score;
                 float moveSpeed;
-                float gravity = 10;
+                float gravity;
+                float jumpForce;
+                float velocityY;
                 Vector2 oldPosition;
                 Vector2 input = { 0.0f, 0.0f };  
 };

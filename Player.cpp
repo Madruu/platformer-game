@@ -8,6 +8,10 @@ Player::Player()
         moveSpeed = 200.0f;
         position = { 400, 225 };
         score = 0;
+        gravity = 450;
+        jumpForce = 200;
+        isJumping = false;
+        velocityY = 0.0f;
 }
 
 Player::~Player()
@@ -34,9 +38,6 @@ void Player::Update()
                 input.x /= length;
                 input.y /= length;
         }
-        
-        float dt = GetFrameTime();
-
 }
 
 void Player::MoveXAxis()
@@ -50,10 +51,17 @@ void Player::MoveYAxis()
 {
         SaveY();
         float dt = GetFrameTime();
-        position.y += input.y * moveSpeed * dt;
-        // position.y += gravity; This is gonna be the actual mechanic
-}
+        //For jumping need velocityY
+        if(IsKeyPressed(KEY_SPACE) && !isJumping)
+        {
+                isJumping = true;
+                velocityY = -jumpForce;
+        } 
 
+        velocityY += gravity * dt;
+
+        position.y += velocityY * dt;
+}
 
 void Player::SaveX()
 {

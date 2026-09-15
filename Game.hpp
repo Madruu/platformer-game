@@ -18,10 +18,11 @@ class Game {
                 void SpawnCoin(Vector2 coinPos);
                 std::vector<Coin> coins;
                 Player player;
+               // std::vector<Enemy> enemies;
                 Enemy enemy;
                 TileMap tm;
                 bool collided = false;
                 Rectangle boxCollision;
-                //std::vector<TileMap> tiles;
                 bool CheckCollisionWithTiles();
+                bool CheckCollisionWithEnemy();
 };
